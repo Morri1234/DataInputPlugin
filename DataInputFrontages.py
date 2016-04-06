@@ -196,7 +196,7 @@ class DataInputFrontages:
             parent=self.iface.mainWindow())
 
 
-    #--------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     ##############################################################################FRONTAGES#############################################################################################
 
@@ -236,21 +236,18 @@ class DataInputFrontages:
         # remove the toolbar
         del self.toolbar
 
-
+#Delete Lines for Frontages with NULL value
 
     def deletelinesrun(self):
-        """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop
         result = self.dlg.exec_()
 
     def deletelinesrunclose(self):
-        """Run method that performs all the real work"""
-        # show the dialog
         self.dlg.close()
-        # Run the dialog event loop
         
+#Import draw tools
 
 
     def DrawTransparent(self):
@@ -277,7 +274,8 @@ class DataInputFrontages:
     def DrawLowFence(self):
         self.lowfencetool = LowFence( self.canvas )
         self.canvas.setMapTool(self.lowfencetool)
-               
+
+#Load Thematic Style    
 
     def CustomThematic(self):
         if self.dockwidget.comboBox_F12.currentText() == "SSL Standard":
@@ -296,6 +294,8 @@ class DataInputFrontages:
             input7.loadNamedStyle(plugin_path)
             mc.refresh()
 
+    #Add New thematic to combobox
+
     def select_input_qml(self):
         filenameLU = QFileDialog.getOpenFileName(self.dockwidget, "Select Input File","", '*.qml')
         self.dockwidget.comboBox_F12.addItem(filenameLU)
@@ -305,6 +305,8 @@ class DataInputFrontages:
         self.dockwidget.comboBox_F12.setItemText(3,"Custom Thematic 2")
         self.dockwidget.comboBox_F12.setItemText(4,"Custom Thematic 3") 
         self.dockwidget.comboBox_F12.setItemText(5,"Custom Thematic 4")
+
+    #Open/Load/Save File
 
     def select_output_file(self):
         filename = QFileDialog.getSaveFileName(self.dockwidget, "Select Save Location ","", '*.shp')
@@ -362,7 +364,7 @@ class DataInputFrontages:
 
         self.dockwidget.lineEdit_3.setPlaceholderText('Select Load Location...')
 
-
+#Create Polylines from plogons and save a frontages layer
     def explode(self):
         
         input1 = self.dockwidget.lineEdit.text()
@@ -429,6 +431,9 @@ class DataInputFrontages:
             self.dockwidget.pushButton_s.setEnabled(True)
             self.dockwidget.toolButton_r.setEnabled(True)
 
+
+#Redundant Doesnt work
+
     def deleteFeatures(self):
         mc = self.canvas
         layer15 = self.iface.activeLayer()
@@ -444,6 +449,8 @@ class DataInputFrontages:
         mc.refresh()
         self.dlg.close()
 
+
+#Update Selection
     
     def updateTransparent(self):
         layer1 = self.iface.activeLayer()
@@ -567,6 +574,9 @@ class DataInputFrontages:
         layer1.startEditing()
 
 
+    #Update Combobox with required file types
+
+
     def Frnt_updatelist(self):
         layers = self.iface.legendInterface().layers()
         self.dockwidget.comboBox_3.clear()
@@ -586,6 +596,8 @@ class DataInputFrontages:
 
         self.dockwidget.comboBox_4.addItems(layer_list5)
         self.dockwidget.comboBox_3.addItems(layer_list4)
+
+    #Spatial join for matching ID
 
     def Frnt_spatialjoin(self):
         indexname1 = self.dockwidget.comboBox_3.currentText()
@@ -621,6 +633,8 @@ class DataInputFrontages:
 
     
     ###################################################################################ENTRANCES#############################################################################################
+    #Load/Save File selection
+
     def select_output_file_E(self):
         filename = QFileDialog.getSaveFileName(self.dockwidget, "Select Save Location ","", '*.shp')
         self.dockwidget.lineEdit_E4.setText(filename)
@@ -629,7 +643,7 @@ class DataInputFrontages:
         filename = QFileDialog.getOpenFileName(self.dockwidget, "Load Existing File ","", '*.shp')
         self.dockwidget.lineEdit_E7.setText(filename)
 
-
+    #Create New File
 
     def createEntrances(self):
         # create layer
@@ -676,7 +690,7 @@ class DataInputFrontages:
         self.dockwidget.comboBox_E12.setEditable(True)
         
         
-        
+    #Load File    
 
     def Loadfile_E(self):
         location1 = self.dockwidget.lineEdit_E7.text()
@@ -702,6 +716,8 @@ class DataInputFrontages:
         self.dockwidget.lineEdit_E7.setPlaceholderText('Select Load Location')
         self.dockwidget.comboBox_E12.setEditable(True)
 
+
+    #Update Selection
 
     def updateControlled(self):
         layer1 = self.iface.activeLayer()
@@ -816,7 +832,7 @@ class DataInputFrontages:
         msg = msgBar.createMessage( u'Selection Updated : Uncontrolled' )
         msgBar.pushWidget( msg, QgsMessageBar.INFO, 5 )   
 
-              
+    #Load Draw Tools         
     
     def GroundControlledDefault(self):
         self.GroundControlledDefaulttool = GroundControlledDefault( self.canvas )
@@ -878,6 +894,9 @@ class DataInputFrontages:
         self.LowerUNControlledDefaulttool = LowerUNControlledDefault( self.canvas )
         self.canvas.setMapTool(self.LowerUNControlledDefaulttool)
 
+
+    #Load Custom Thematic
+
     def Ent_CustomThematic(self):
         if self.dockwidget.comboBox_E12.currentText() == "SSL Standard - General":
             mc = self.canvas
@@ -902,7 +921,9 @@ class DataInputFrontages:
             input7 = self.iface.activeLayer()
             input7.loadNamedStyle(plugin_path)
             mc.refresh()
-            
+
+
+    #Add new thematic styles to Combobox           
             
 
     def Ent_select_input_qml2(self):
@@ -916,6 +937,7 @@ class DataInputFrontages:
         self.dockwidget.comboBox_E12.setItemText(6,"Custom Thematic 4")
        
 
+    #Update combobox with correct file type
     def Ent_updatelist(self):
         layers = self.iface.legendInterface().layers()
         self.dockwidget.comboBox.clear()
@@ -936,6 +958,7 @@ class DataInputFrontages:
         self.dockwidget.comboBox_2.addItems(layer_list3)
         self.dockwidget.comboBox.addItems(layer_list2)
 
+    #Spatial Join to update ID
     def Ent_spatialjoin(self):
         indexname1 = self.dockwidget.comboBox.currentText()
         layer1 = QgsMapLayerRegistry.instance().mapLayersByName( indexname1 )[0]
@@ -967,6 +990,7 @@ class DataInputFrontages:
                    
                                                   
 ###################################################################################LAND USE#############################################################################################
+    #Save/Load File Select
     def select_output_file_LU(self):
         filename = QFileDialog.getSaveFileName(self.dockwidget, "Select Save Location ","", '*.shp')
         self.dockwidget.lineEdit_6.setText(filename)
@@ -1048,7 +1072,7 @@ class DataInputFrontages:
         self.dockwidget.lineEdit_7.clear()
         self.dockwidget.lineEdit_7.setPlaceholderText('Select Load Location...') 
 
-        
+    #Create New File  
 
     def LUNewFile(self):
                
@@ -1165,6 +1189,7 @@ class DataInputFrontages:
         self.dockwidget.lineEdit_4.setPlaceholderText('Select Save Location...')
         self.dockwidget.lineEdit_6.setPlaceholderText('Select Input File...')
 
+    #Selection Update
     def LuGFUpdate(self):
         layer = self.iface.activeLayer()       
             
@@ -2372,6 +2397,8 @@ class DataInputFrontages:
         msg = msgBar.createMessage( u'Selection Updated')
         msgBar.pushWidget( msg, QgsMessageBar.INFO, 5 ) 
 
+    #Add custom Thematic styles to combobox
+
 
     def select_inputThematic_file_LU(self):
             filenameLU = QFileDialog.getOpenFileName(self.dockwidget, "Select Input File","", '*.qml')
@@ -2384,7 +2411,7 @@ class DataInputFrontages:
             self.dockwidget.comboBox_11.setItemText(7,"Custom Thematic 4")  
 
             
-
+    #Load Thematic Style
 
     def LUThematics(self):
         if self.dockwidget.comboBox_11.currentText() == "SSL Code":
@@ -2419,7 +2446,7 @@ class DataInputFrontages:
             input7.loadNamedStyle(plugin_path)
             mc.refresh()              
 
-
+    #Update land Use Category combobox - GF
     def GFChecked(self):
 
         if self.dockwidget.checkBox.checkState() == 2:
@@ -2447,7 +2474,7 @@ class DataInputFrontages:
             self.dockwidget.lineEdit_9.setEnabled(False)
             self.dockwidget.lineEdit_10.setEnabled(False)
 
-
+    #Update land use subcategory combobox based on land use category combobox - GF
     def GFsubcat(self):
 
         if self.dockwidget.comboBox_5.currentText() == "":
@@ -2583,6 +2610,7 @@ class DataInputFrontages:
             self.dockwidget.comboBox_8.addItems(LU_list_sub1)
 
 
+    #Update land Use Category combobox - FF
     def FFChecked(self):
 
         if self.dockwidget.checkBox_2.checkState() == 2:
@@ -2604,6 +2632,7 @@ class DataInputFrontages:
             self.dockwidget.comboBox_6.addItems(LU_list) 
             self.dockwidget.comboBox_9.addItems(LU_list)
 
+    #Update land use subcategory combobox based on land use category combobox - FF
     def FFsubcat(self):
 
         if self.dockwidget.comboBox_6.currentText() == "":
@@ -2739,6 +2768,7 @@ class DataInputFrontages:
             self.dockwidget.comboBox_9.addItems(LU_list_sub1)
 
 
+     #Update land Use Category combobox - UF
     def UFChecked(self):
 
         if self.dockwidget.checkBox_3.checkState() == 2:
@@ -2760,6 +2790,7 @@ class DataInputFrontages:
             self.dockwidget.comboBox_7.addItems(LU_list) 
             self.dockwidget.comboBox_10.addItems(LU_list)
 
+    #Update land use subcategory combobox based on land use category combobox - FF
     def UFsubcat(self):
 
         if self.dockwidget.comboBox_7.currentText() == "":
@@ -2895,12 +2926,13 @@ class DataInputFrontages:
             self.dockwidget.comboBox_10.addItems(LU_list_sub1)
 
 ###################################################################################Traces#############################################################################################
+    #Select Folder to Save Traces and Stop Files
     def select_output_file_TR(self):
         filename = QFileDialog.getExistingDirectory(self.dockwidget, "Select Folder ", '')
         self.dockwidget.lineEdit_T5.setText(filename)
 
+    #Launch pop up 
     def runtracesetup(self):
-        """Run method that performs all the real work"""
         # show the dialog
         self.dlg2.show()
         # Run the dialog event loop
@@ -2911,6 +2943,7 @@ class DataInputFrontages:
             # substitute with your code.
             pass
 
+    #Update Category List from User input
     def updatcategory(self):
         
         Category_List = []
@@ -2923,6 +2956,7 @@ class DataInputFrontages:
         self.dlg2.lineEdit_T1.clear()        
 
 
+    #Remove category 
     def removecat(self):
         listItems=self.dlg2.listWidget_T2.selectedItems()
         if not listItems: return        
@@ -2930,6 +2964,7 @@ class DataInputFrontages:
             self.dlg2.listWidget_T2.takeItem(self.dlg2.listWidget_T2.row(item))
 
 
+    #Add Stop type from user input
     def updatstop(self):
         
         Stop_List = []
@@ -2942,12 +2977,14 @@ class DataInputFrontages:
         self.dlg2.lineEdit_T2.clear()        
 
 
+    #Remove Stop
     def removestop(self):
         listItems=self.dlg2.listWidget_T3.selectedItems()
         if not listItems: return        
         for item in listItems:
             self.dlg2.listWidget_T3.takeItem(self.dlg2.listWidget_T3.row(item))
 
+    #Create New File
     def createtracesfile(self):
         vl = QgsVectorLayer("LineString", "Traces1", "memory")
         pr = vl.dataProvider()
@@ -2963,7 +3000,6 @@ class DataInputFrontages:
         removelayer1 = QgsMapLayerRegistry.instance().mapLayersByName( "Traces1" )[0]
         QgsMapLayerRegistry.instance().removeMapLayers( [removelayer1.id()] )
 
-        ################################################################################################
         stopdir = '\\ProjectNumber_ProjectName_Stops.shp'
         location2 = location + stopdir
 
@@ -2979,7 +3015,6 @@ class DataInputFrontages:
         QgsMapLayerRegistry.instance().removeMapLayers( [removelayer2.id()] )
 
        
-#######################################################################################################################################################
 
         print location1
         print location2
@@ -3162,7 +3197,7 @@ class DataInputFrontages:
         self.dlg2.accept()
 
 
-
+    #Launch Trace commit Pop up
     def tracescommit(self):
         """Run method that performs all the real work"""
         # show the dialog
@@ -3194,7 +3229,7 @@ class DataInputFrontages:
         
         
 
-   #--------------------------------------------------------------------------
+   #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     def run(self):
         """Run method that loads and starts the plugin"""
